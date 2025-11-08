@@ -1,23 +1,23 @@
 version: "3.9"
 
-services: #--> standard
-  app: # --> user defined
-    build: . # --> standard 
-    container_name: student-app # ->user defined
-    ports: # --> constant 
-      - "3100:3000" # --> userfedined:standard 
-    volumes:  # --> standard 
-      - .:/usr/src/app # --> standard
-      - /usr/src/app/node_modules   # prevent node_modules overwrite from host --> standard
-    environment: # --> standard 
-      - MONGO_URL=mongodb://mongo:27017/studentdb #  -> dbconnectionstring constant://userdefined:standard/userdefined
+services:
+  app:
+    build: .
+    container_name: student-app
+    ports:
+      - "3100:3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules   # prevent node_modules overwrite from host
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/studentdb
     depends_on:
       - mongo
     restart: always
 
   mongo:
-    image: mongo:latest  # --> image pulled from db whcih is existing from docker hub and not user defined.
-    container_name: mongo-db  # --> user defined
+    image: mongo:latest
+    container_name: mongo-db
     ports:
       - "27017:27017"
     volumes:
